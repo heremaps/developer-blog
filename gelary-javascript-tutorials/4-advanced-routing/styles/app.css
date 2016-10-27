@@ -1,0 +1,78 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.map {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+#route-panel {
+  background: white;
+  width: 25%;
+  position: absolute;
+  z-index: 1;
+  top: 20px;
+  left: 20px;
+  padding: 10px;
+}
+
+#route-panel ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#route-panel > ul > li {
+  display: block;
+  padding: 0.75em;
+  border-bottom: 1px solid #eee;
+}
+
+
+#route-panel > ul > li:last-child {
+  border: none;
+}
+
+#route-panel ol.directions {
+  display: none;
+  overflow: auto;
+  max-height: 400px;
+  background: #fff;
+  padding: 5px 5px 5px 25px;
+  color: #000;
+  list-style-type: decimal;
+  list-style-position: outside;
+  font-size: 80%;
+  margin: 0.75em 0 0;
+}
+
+#route-panel ol.directions li {
+  display: list-item;
+  margin: 0.5em 0 0.5em 0.25em;
+}
+
+#route-panel > ul li.selected,
+#route-panel > ul li.selected:hover {
+  color: white;
+  background: rgba(0, 85, 170, 0.75);
+}
+
+#route-panel > ul li.selected ol.directions {
+  display: block;
+}
+
+#route-panel > ul > li:hover {
+  background: rgba(0, 85, 170, 0.25);
+  cursor: pointer;
+}
