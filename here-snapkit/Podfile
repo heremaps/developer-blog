@@ -1,0 +1,6 @@
+target 'here-snapkit' do
+
+  use_frameworks!
+  pod 'SnapSDK'
+
+end

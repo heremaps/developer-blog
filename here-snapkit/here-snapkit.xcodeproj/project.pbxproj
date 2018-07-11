@@ -12,10 +12,7 @@
 		A4A9B88620E2AD950018C961 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4A9B88420E2AD950018C961 /* Main.storyboard */; };
 		A4A9B88820E2AD9B0018C961 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4A9B88720E2AD9B0018C961 /* Assets.xcassets */; };
 		A4A9B88B20E2AD9B0018C961 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4A9B88920E2AD9B0018C961 /* LaunchScreen.storyboard */; };
-		A4C0299F20E2AF3600AE2E0F /* SCSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C0299D20E2AF3500AE2E0F /* SCSDKCoreKit.framework */; };
-		A4C029A220E2AF5B00AE2E0F /* SCSDKCoreKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4C0299D20E2AF3500AE2E0F /* SCSDKCoreKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A4C029A320E2AF5B00AE2E0F /* SCSDKCreativeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C0299E20E2AF3500AE2E0F /* SCSDKCreativeKit.framework */; };
-		A4C029A420E2AF5B00AE2E0F /* SCSDKCreativeKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4C0299E20E2AF3500AE2E0F /* SCSDKCreativeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CC8E2E34A7B71CC65663E604 /* Pods_here_snapkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B7EB54D6F43C77EF171B8CB /* Pods_here_snapkit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,8 +22,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A4C029A220E2AF5B00AE2E0F /* SCSDKCoreKit.framework in Embed Frameworks */,
-				A4C029A420E2AF5B00AE2E0F /* SCSDKCreativeKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -34,6 +29,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		26690C23CD3ED55319C8F51D /* Pods-here-snapkit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-here-snapkit.release.xcconfig"; path = "Pods/Target Support Files/Pods-here-snapkit/Pods-here-snapkit.release.xcconfig"; sourceTree = "<group>"; };
+		5B7EB54D6F43C77EF171B8CB /* Pods_here_snapkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_here_snapkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4A9B87D20E2AD950018C961 /* here-snapkit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "here-snapkit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4A9B88020E2AD950018C961 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4A9B88220E2AD950018C961 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -41,8 +38,7 @@
 		A4A9B88720E2AD9B0018C961 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A4A9B88A20E2AD9B0018C961 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A4A9B88C20E2AD9B0018C961 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A4C0299D20E2AF3500AE2E0F /* SCSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SCSDKCoreKit.framework; sourceTree = "<group>"; };
-		A4C0299E20E2AF3500AE2E0F /* SCSDKCreativeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SCSDKCreativeKit.framework; sourceTree = "<group>"; };
+		EA20723263FDFF558F97DD6A /* Pods-here-snapkit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-here-snapkit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-here-snapkit/Pods-here-snapkit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,22 +46,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4C0299F20E2AF3600AE2E0F /* SCSDKCoreKit.framework in Frameworks */,
-				A4C029A320E2AF5B00AE2E0F /* SCSDKCreativeKit.framework in Frameworks */,
+				CC8E2E34A7B71CC65663E604 /* Pods_here_snapkit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C6847C0207646F0F172254E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EA20723263FDFF558F97DD6A /* Pods-here-snapkit.debug.xcconfig */,
+				26690C23CD3ED55319C8F51D /* Pods-here-snapkit.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A4A9B87420E2AD950018C961 = {
 			isa = PBXGroup;
 			children = (
-				A4C0299D20E2AF3500AE2E0F /* SCSDKCoreKit.framework */,
-				A4C0299E20E2AF3500AE2E0F /* SCSDKCreativeKit.framework */,
 				A4A9B87F20E2AD950018C961 /* here-snapkit */,
 				A4A9B87E20E2AD950018C961 /* Products */,
 				C0F220AD01E8D6550FF07647 /* Frameworks */,
+				4C6847C0207646F0F172254E /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,6 +96,7 @@
 		C0F220AD01E8D6550FF07647 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5B7EB54D6F43C77EF171B8CB /* Pods_here_snapkit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -104,10 +108,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A4A9B88F20E2AD9B0018C961 /* Build configuration list for PBXNativeTarget "here-snapkit" */;
 			buildPhases = (
+				385DC14F9FFF6AEA1D689E62 /* [CP] Check Pods Manifest.lock */,
 				A4A9B87920E2AD950018C961 /* Sources */,
 				A4A9B87A20E2AD950018C961 /* Frameworks */,
 				A4A9B87B20E2AD950018C961 /* Resources */,
 				A4C029A520E2AF5B00AE2E0F /* Embed Frameworks */,
+				B1A61BD2057CB7C21C9A6B73 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -163,6 +169,59 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		385DC14F9FFF6AEA1D689E62 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-here-snapkit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B1A61BD2057CB7C21C9A6B73 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-here-snapkit/Pods-here-snapkit-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
+				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${PODS_ROOT}/SnapSDK/SCSDKBitmojiKit.framework",
+				"${PODS_ROOT}/SnapSDK/SCSDKCoreKit.framework",
+				"${PODS_ROOT}/SnapSDK/SCSDKCreativeKit.framework",
+				"${PODS_ROOT}/SnapSDK/SCSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCSDKBitmojiKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCSDKCreativeKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYImage.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-here-snapkit/Pods-here-snapkit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A4A9B87920E2AD950018C961 /* Sources */ = {
@@ -312,6 +371,7 @@
 		};
 		A4A9B89020E2AD9B0018C961 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA20723263FDFF558F97DD6A /* Pods-here-snapkit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -335,6 +395,7 @@
 		};
 		A4A9B89120E2AD9B0018C961 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26690C23CD3ED55319C8F51D /* Pods-here-snapkit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
