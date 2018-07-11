@@ -6,7 +6,13 @@
 
 Created by [Dylan Babbs](http://dylanbabbs.com).
 
-### Adding  HERE and Snap Kit keys
+### Installation
+Running the following command will install the required Snap dependencies.
+```
+pod install
+```
+
+### Adding HERE and Snap Kit keys
 In order to successfully build this project, you need to register for HERE Developer and Snap Kit credentials.
 
 In `Info.plist`, replace `YOUR-SNAPKIT-KEY` with your Snap Kit development key, found in the Snap Kit portal.
