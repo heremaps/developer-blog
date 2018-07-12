@@ -3,7 +3,7 @@
 //  here-snapkit
 //
 //  Created by Babbs, Dylan on 6/26/18.
-//  Copyright © 2018 Dylan Babbs. All rights reserved.
+//  Copyright © 2017-2018 HERE Europe B.V. All rights reserved.
 //
 
 import UIKit
