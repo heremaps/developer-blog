@@ -133,7 +133,7 @@
 				CLASSPREFIX = "";
 				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
-				ORGANIZATIONNAME = "HERE Technologies";
+				ORGANIZATIONNAME = "HERE Europe B.V.";
 				TargetAttributes = {
 					A4A9B87C20E2AD950018C961 = {
 						CreatedOnToolsVersion = 9.4.1;
