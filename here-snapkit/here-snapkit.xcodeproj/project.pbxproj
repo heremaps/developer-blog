@@ -130,9 +130,10 @@
 		A4A9B87520E2AD950018C961 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = "";
 				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
-				ORGANIZATIONNAME = "Dylan Babbs";
+				ORGANIZATIONNAME = "HERE Technologies";
 				TargetAttributes = {
 					A4A9B87C20E2AD950018C961 = {
 						CreatedOnToolsVersion = 9.4.1;
