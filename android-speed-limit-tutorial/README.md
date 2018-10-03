@@ -7,7 +7,7 @@ We will explore some of the HERE APIs that will allow us to write a simple Andro
 will display our current speed and current speed limit warning on the road that we are currently on.
 
 
-![Speed Limit](/.screenshots/SpeedLimit.png)
+![Speed Limit](.screenshots/SpeedLimit.png)
 
 ## Steps before we start
 
