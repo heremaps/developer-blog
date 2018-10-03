@@ -387,7 +387,7 @@ We also did not focus on UI implementation - a simple version of it is in the re
 The described example is ready to display the current speed and speed limit on the Activity's UI when the application starts. 
 As the user may want to use other applications while driving, it makes sense to go further and possibly implement your own `Fragment` as a Floating widget, so it can always be on screen.
 
-![Floating Speed Limit Warning](./.screenshots/FloatingSpeedLimit.png)
+![Floating Speed Limit Warning](.screenshots/FloatingSpeedLimit.png)
 
 Happy coding!
 
