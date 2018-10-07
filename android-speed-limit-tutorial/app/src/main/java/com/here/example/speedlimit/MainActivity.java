@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             public void onEngineInitializationCompleted(Error error) {
                 if (error == Error.NONE) {
 
-                    MapEngine.getInstance().onResume();
+                    //MapEngine.getInstance().onResume();
                     startPositioningManager();
                     startNavigationManager();
                     activateSpeedLimitFragment();
