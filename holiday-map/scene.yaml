@@ -1,0 +1,54 @@
+import: refill-style/refill-style.yaml
+
+cameras:
+    camera1:
+        type: perspective
+
+lights:
+    light1:
+        type: directional
+        direction: [0, 1, -.5]
+        diffuse: .3
+        ambient: 1
+
+sources:
+    xyz_osm:
+        type: MVT
+        url: https://xyz.api.here.com/tiles/osmbase/256/all/{z}/{x}/{y}.mvt
+        max_zoom: 16
+    gcfd_events:
+        url: https://xyz.api.here.com/hub/spaces/ATZzGGhz/tile/web/{z}_{x}_{y}
+        type: GeoJSON
+        url_params:
+            access_token: deORolV_eXZ8G2lzpEixdg
+
+layers:
+    gcfd_events:
+        data: {source: gcfd_events}
+        draw:
+           text:
+              interactive: true
+              optional: false
+              collide: false
+              repeat_distance: 0
+              text_source: |
+                  function() {
+                       if (feature.Type === 'Immediate Need') {
+                          return '‼️';
+                       } else if (feature.Type === 'Fresh Truck') {
+                          return '🚚';
+                       } else if (feature.Type === 'Special Events') {
+                          return '🌟';
+                       } else if (feature.Type === 'Repack') {
+                          return '🍱';
+                       } else if (feature.Type === 'Kid Friendly Opportunities') {
+                          return '👶';
+                       }
+                    }
+              font:
+                  fill: black
+                  size: 35px
+
+                  stroke:
+                      color: white
+                      width: 2px

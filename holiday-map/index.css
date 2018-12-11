@@ -1,0 +1,75 @@
+body, html {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   font-family: 'Montserrat', sans-serif;
+   color: #333;
+}
+
+#map {
+   height: 100vh;
+   width: 100vw;
+}
+
+#control {
+   background: white;
+   width: 300px;
+   padding: 20px;
+   margin: 20px;
+   right: 0;
+   position: absolute;
+   z-index: 50000;
+   border: 2px solid #0560FD;
+   border-radius: 4px;
+}
+
+a {
+   color: #0560FD;
+   text-decoration: none;
+}
+
+a:hover {
+   text-decoration: underline
+}
+
+#control .title {
+   font-size: 19px;
+}
+
+#control .subtitle {
+   color: gray;
+   font-size: 14px;
+   font-weight: 300;
+}
+
+.key-label {
+   color: gray;
+   font-weight: 400
+}
+
+.tooltip-title {
+   font-family: 'Montserrat';
+   font-size: 19px;
+   color: 333;
+}
+
+.tooltip-subtitle {
+   font-family: 'Montserrat';
+   color: gray;
+   font-size: 14px;
+   font-weight: 300;
+}
+
+.leaflet-popup-content-wrapper {
+   border: 2px solid #0560FD;
+}
+
+
+canvas {
+   pointer-events: none;
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index: 500000
+
+}

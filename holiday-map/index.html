@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Holiday Season Volunteer Map</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="index.css" />
+   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400" rel="stylesheet">
+   <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"></script>
+   <script src="https://unpkg.com/tangram/dist/tangram.min.js"></script>
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+
+</head>
+
+<body>
+   <canvas id="canvas"></canvas>
+   <div id="control">
+      <div class="title">Greater Chicago Food Depository Volunteer Calendar</div>
+      <p class="subtitle">An interactive map showing available <a href="https://www.chicagosfoodbank.org/get-involved/" target="_blank">GCFD volunteer opportunities</a> throughout the 2018 holiday calendar.</p>
+      <p class="subtitle">This map is purely for showcase purposes. If you are interested in volunteering with GCFD, please take a look at the <a href="https://volunteers.chicagosfoodbank.org/index.php?section=IndividualOpportunities&action=calendar" target="_blank">official volunteer calendar</a>.</p>
+      <div>Key</div>
+      <div>
+         <div class="key-label">‼️ Immediate Need</div>
+         <div class="key-label">🚚 Fresh Truck</div>
+         <div class="key-label">🌟 Special Events</div>
+         <div class="key-label">🍱 Repack</div>
+         <div class="key-label">👶 Kid Friendly Opportunities</div>
+      </div>
+   </div>
+   <div id="map"></div>
+   <script src="snow.js"></script>
+   <script src="index.js"></script>
+</body>
+
+</html>
