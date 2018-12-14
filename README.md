@@ -4,7 +4,7 @@ Examples and projects featured on the [HERE developer blog](https://developer.he
 ## Projects
 - [Gelary JavaScript Tutorials](https://developer.here.com/blog/who-wants-ice-cream-a-here-maps-api-for-javascript-tutorial-part-1-basic-map-set-up)
 - [HERE Snap Kit Integration](https://developer.here.com/blog/here-maps-snap-kit)
-- XYZ Holiday Map
+- [XYZ Holiday Map](https://developer.here.com/blog/holiday-mapping-for-non-profits-with-xyz)
 
 ## License
 
