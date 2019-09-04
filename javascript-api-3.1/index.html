@@ -1,0 +1,161 @@
+<html>
+
+<head>
+   <title>HERE JS API 3.1</title>
+
+   <!-- Style -->
+   <link rel="stylesheet" type="text/css" href="css/index.css" />
+   <link rel="stylesheet" type="text/css" href="css/sidebar.css" />
+   <link rel="stylesheet" type="text/css" href="css/search.css" />
+
+   <!-- JS API -->
+   <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+   <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+   <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+   <script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+   <script src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+
+   <!-- Turf for area calculations -->
+   <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+
+   <!-- Social -->
+   <link rel="shortcut icon" href="resources/favicon.ico">
+
+   <!-- Date -->
+   <script src="https://unpkg.com/better-dom@4.0.0/dist/better-dom.min.js"></script>
+   <script src="https://unpkg.com/better-dateinput-polyfill@3.2.7/dist/better-dateinput-polyfill.min.js"></script>
+</head>
+
+<body>
+   <div id="map"></div>
+   <div id="sidebar">
+      <div class="gradient-line"></div>
+      <div class="header">
+         <h1>HERE Isoline Routing</h1>
+         <p>
+            Determine a city's reachability index using HERE's location services.
+            <a target="_blank" href="https://developer.here.com/">Learn more</a>
+         </p>
+         <p>
+            To explore different locations, search for a city below or drag the map marker around.
+         </p>
+         <div class="search-container">
+            <h2 class="city-label">Select a city</h2>
+            <div class="outer-city-field-container">
+               <img src="resources/outline-search-24px.svg">
+               <div class="inner-city-field-container">
+                  <div contenteditable="true" class="city-field"></div>
+                  <div class="city-field-suggestion"></div>
+               </div>
+            </div>
+         </div>
+
+      </div>
+      <div class="tabs">
+         <div class="tab-container">
+            <div class="tab tab-active" id="tab-1">
+               Isoline Options
+            </div>
+            <div class="tab" id="tab-2">
+               Display Options
+            </div>
+         </div>
+         <div class="tab-bar"></div>
+      </div>
+
+
+      <div class="content">
+         <div class="content-group" id="content-group-1">
+            <div class="group">
+               <div class="h2-row">
+                  <h2>Range</h2>
+                  <div id="slider-val" class="h2-val"></div>
+               </div>
+               <input class="isoline-controls slider" id="range" type="range" min="0" max="4000" value="1200" />
+            </div>
+            <div class="group columns">
+               <div class="col">
+                  <h2>Mode</h2>
+                  <label class="radio-container">
+                     <input class="isoline-controls" type="radio" id="car" name="mode" checked>
+                     <span class="checkmark"></span>
+                     Car
+                  </label>
+                  <label class="radio-container">
+                     <input class="isoline-controls" type="radio" id="pedestrian" name="mode">
+                     <span class="checkmark"></span>
+                     Pedestrian
+                  </label>
+                  <label class="radio-container">
+                     <input class="isoline-controls" type="radio" id="truck" name="mode">
+                     <span class="checkmark"></span>
+                     Truck
+                  </label>
+               </div>
+               <div class="col">
+                  <h2>Range type</h2>
+                  <label class="radio-container">
+                     <input class="isoline-controls" type="radio" id="time" name="range-type" checked>
+                     <span class="checkmark"></span>
+                     Time
+                  </label>
+                  <label class="radio-container">
+                     <input class="isoline-controls" type="radio" id="distance" name="range-type">
+                     <span class="checkmark"></span>
+                     Distance
+                  </label>
+               </div>
+            </div>
+
+            <div class="group">
+               <h2>Date</h2>
+               <input class="isoline-controls text-input" id="date-value" type="date" name="date" >
+            </div>
+
+            <div class="group">
+               <div class="h2-row">
+                  <h2>Time</h2>
+                  <div id="hour-slider-val" class="h2-val"></div>
+               </div>
+               <div class="graph-container">
+                  <div class="no-graph-text">Distribution is only available in range type time and mode car.</div>
+                  <div class="graph"></div>
+               </div>
+               <input class="isoline-controls slider" id="hour-slider" type="range" min="0" max="23" value="12" />
+            </div>
+         </div>
+
+         <div class="content-group" id="content-group-2">
+            <div class="group">
+               <h2>Map Theme</h2>
+               <div class="theme-tiles">
+                  <div id="day" class="theme-tile theme-tile-active">
+                     <img src="./resources/day-theme.png">
+                  </div>
+                  <div id="night" class="theme-tile">
+                     <img src="./resources/night-theme.png">
+                  </div>
+               </div>
+            </div>
+
+            <div class="group">
+               <h2>Map View</h2>
+               <label class="radio-container">
+                  <input class="view-controls" type="radio" id="static" name="map-view" checked>
+                  <span class="checkmark"></span>
+                  Static top-down
+               </label>
+               <label class="radio-container">
+                  <input class="view-controls" type="radio" id="rotating" name="map-view">
+                  <span class="checkmark"></span>
+                  Rotating angle
+               </label>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <script type="module" src="js/app.js"></script>
+</body>
+
+</html>

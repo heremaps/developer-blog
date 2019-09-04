@@ -1,0 +1,193 @@
+/* Variables */
+
+:root {
+   --background: white;
+   --secondary-background: #FAFCFD;
+   --primary-text: #3F444D;
+   --secondary-text: #6d7178;
+   --gradient: linear-gradient(to right, #4A86FF,#48DAD0); /*linear-gradient(to right,#A566FF,#48DAD0);*/
+   --primary: #77A0E7;
+   --accent: #4A86FF;
+   --margin: 15px;
+   --padding: 15px;
+   --input-padding: 10px;
+   --font-family: FiraGO, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+/* Fonts */
+
+@font-face {
+   font-family: FiraGO;
+   src: url(../resources/FiraGO-Regular.woff);
+}
+
+@font-face {
+   font-family: FiraGO;
+   src: url(../resources/FiraGO-Bold.woff);
+   font-weight: bold;
+}
+
+@font-face {
+   font-family: FiraGO;
+   src: url(../resources/FiraGO-Medium.woff);
+   font-weight: 500;
+}
+
+/* Main */
+
+body, html { 
+   border: 0; 
+   padding: 0; 
+   margin: 0;
+   font-size: 13px;
+   color: var(--secondary-text);
+   font-family: var(--font-family);
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+}
+
+#map { 
+   width: 100vw; 
+   height: 100vh; 
+   position: absolute;
+}
+
+/* Links */
+
+a {
+   font-weight: 500;
+   color: var(--primary);
+   text-decoration: none;
+}
+
+a:hover {
+   color: var(--accent);
+   transition: .3s all ease-in-out;
+}
+
+/* Headers */
+
+h1 {
+   font-size: 18px;
+   font-weight: 500;
+   margin: 0px 0px 10px 0px;
+   color: var(--primary-text);
+}
+
+h2 {
+   font-size: 14px;
+   font-weight: 500;
+   margin: 0px 0px 10px 0;
+}
+
+/* Paragraph */
+
+p {
+   line-height: 18px;
+}
+
+/* Text Input Component */
+.text-input {
+   padding: var(--input-padding);
+   font-weight: 500;
+   width: 100%;
+   background: var(--secondary-background);
+   font-size: 14px;
+   color: var(--primary-text);
+   font-family: var(--font-family);
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   outline: none;
+   border: 2px solid transparent;
+   transition: .2s all ease-in-out;
+}
+
+.text-input:focus {
+   border: 2px solid var(--accent);
+}
+
+/* Radio Buttons */
+.radio-container {
+   display: block;
+   position: relative;
+   padding-left: 25px;
+   margin: 15px 0;
+   cursor: pointer;
+   user-select: none;
+}
+
+.radio-container input {
+   position: absolute;
+   opacity: 0;
+   cursor: pointer;
+}
+ 
+
+.checkmark {
+   position: absolute;
+   top: 0;
+   left: 0;
+   height: 16px;
+   width: 16px;
+   background-color: var(--secondary-background);
+   border: 1px solid #ccc;
+   border-radius: 50%;
+   transition: .1s all ease-in-out;
+}
+ 
+.radio-container:hover input ~ .checkmark {
+   background-color: #EAEAEA;
+   border: 1px solid transparent;
+}
+ 
+
+.radio-container input:checked ~ .checkmark {
+   background-color: #2196F3;
+   border: 1px solid transparent;
+}
+ 
+
+.checkmark:after {
+   content: "";
+   position: absolute;
+   display: none;
+}
+ 
+.radio-container input:checked ~ .checkmark:after {
+   display: block;
+}
+ 
+.radio-container .checkmark:after {
+   top: 5px;
+   left: 5px;
+   width: 6px;
+   height: 6px;
+   border-radius: 50%;
+   background: white;
+}
+
+/* Slider Component */
+.slider {
+   -webkit-appearance: none;
+   appearance: none;
+   width: 100%;
+   height: 2px;
+   background: var(--secondary-text); 
+   outline: none;
+   margin: 10px 0;
+}
+ 
+.slider::-webkit-slider-thumb {
+   -webkit-appearance: none;
+   appearance: none;
+   width: 8px;
+   height: 16px; 
+   border-radius: 2px;
+   background: var(--accent);
+   cursor: pointer;
+}
+
+.columns {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+}
