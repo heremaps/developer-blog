@@ -25,8 +25,6 @@ class HourFilter {
    }
 
    setData(data) {
-      console.log(data);
-      
       this.noGraphLabel.style.opacity = 0;
       this.slider.style.opacity = 1;
       this.sliderLabel.style.opacity = 1;
