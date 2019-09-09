@@ -8,11 +8,6 @@ const autocompleteGeocodeUrl = (query) =>
 &resultType=areas
 &query=${query}`
 
-const isolineMaxRange = {
-   time: 32400, //seconds
-   distance: 80000 //meters
-}
-
 const requestGeocode = locationid => {
    return new Promise((resolve, reject) => {
       geocoder.geocode(
@@ -24,6 +19,11 @@ const requestGeocode = locationid => {
          err => reject(err)
       )
    })
+}
+
+const isolineMaxRange = {
+   time: 32400, //seconds
+   distance: 80000 //meters
 }
 
 
