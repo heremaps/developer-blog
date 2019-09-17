@@ -29,7 +29,7 @@ const isolineMaxRange = {
 
 const requestIsolineShape = options => {
    const params = {
-      'mode': `shortest;${options.mode};traffic:enabled`,
+      'mode': `fastest;${options.mode};traffic:enabled`,
       'start': `geo!${options.center.lat},${options.center.lng}`,
       'range': options.range,
       'rangetype': options.rangeType,
