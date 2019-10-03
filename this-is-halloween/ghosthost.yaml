@@ -1,0 +1,755 @@
+
+global:
+    language: en
+    language_text_source: |
+        function() {
+            return (global.language && feature['name:'+global.language]) || feature.name;
+        }
+    sort_rank: |
+        function() {
+            return (feature.sort_rank)
+            }
+    colors:
+        green: '#97DBB6'
+        blue-green: '#46919E'
+        blue: '#375A80'
+        purple: '#38315F'
+        dark-purple: '#252138'
+
+scene:
+    animated: true
+    background:
+        color: '#252138'
+
+fonts:
+    Creepster:
+        # regular
+        - weight: 400
+          url: https://cdn.jsdelivr.net/gh/google/fonts/apache/creepstercaps/CreepsterCaps-Regular.ttf
+    Gruesa:
+        #regular
+        - weight: 400
+          url: https://cdn.jsdelivr.net/gh/google/fonts/ofl/averiagruesalibre/AveriaGruesaLibre-Regular.ttf
+
+textures:
+    pink:
+        animated: true
+        filtering: mipmap
+        url: img/pink.gif
+    teal:
+        animated: true
+        filtering: mipmap
+        url: img/teal.gif
+styles:
+
+    _transparent:
+        base: polygons
+        blend: translucent
+    pink-style:
+        animated: true
+        base: points
+        texture: pink
+    teal-style:
+        animated: true
+        base: points
+        texture: teal
+
+sources:
+    here:
+        type: MVT
+        url: https://vector.hereapi.com/v2/vectortiles/base/mc/{z}/{x}/{y}/omv?xnlp=CL_JSMv3.1.4.0&apikey=Vqc9lMSRjkBhuO_waDvYexsb52_S2E0k8Gn5J_-TsoM&mv=97
+    hcity:
+        url: https://xyz.api.here.com/hub/spaces/ZQuY98FS/tile/web/{z}_{x}_{y}
+        url_params:
+            access_token: AAUbSz5dHyw5tTcORSwp9ME
+        type: GeoJSON
+    spirit:
+        url: https://xyz.api.here.com/hub/spaces/dhGZiRwZ/tile/web/{z}_{x}_{y}
+        url_params:
+            access_token: AAUbSz5dHyw5tTcORSwp9ME
+        type: GeoJSON
+
+layers:
+    water:
+        data: { source: here, layer: water }
+        water fill:
+            filter:
+                - $geometry: polygon
+            draw:
+                polygons:
+                    order: global.sort_rank
+                    color: '#38315F'
+        rivers:
+            filter:
+                all:
+                - $geometry: line
+                - $zoom: { min: 14 }
+            draw:
+                text:
+                    text_wrap: 10
+                    font:
+                        family: Gruesa
+                        text_source: global.language_text_source
+                        text_wrap: 10
+                        order: global.sort_rank
+                        size: [[14, 10px], [17, 14px]]
+                        priority: 100
+                        fill: '#38315F'
+        lakes:
+            filter:
+                all:
+                - function() {return feature.min_zoom <= ($zoom)}
+                - { $zoom: { min: 1, max: 8 } }
+                - $geometry: point
+            draw:
+                text:
+                    text_wrap: 3
+                    font:
+                        family: Gruesa
+                        text_source: global.language_text_source
+                        transform: uppercase
+
+                        fill: '#252138'
+                        stroke: {color: [0.000, 0.000, 0.000, 0.10], width: 2
+                        }
+                        order: global.sort_rank
+                        size: [[5, 10px], [10, 24px]]
+                        priority: 100
+
+    pink-dots:
+        data: {source: spirit}
+        filter:
+            all:
+            - $geometry: point
+            - { $zoom: { min: 1, max: 8 } }
+        draw:
+            points:
+                blend_order: -2
+                interactive: true
+                color: [1.000, 0.639, 0.894, 1.00]
+                collide: false
+                size: [
+                        [3,  '2px'],
+                        [8,  '12px']]
+    pink-ghosts:
+        data: {source: spirit}
+        filter:
+            all:
+            - $geometry: point
+            - { $zoom: { min: 8, max: 19 } }
+        draw:
+            points:
+                blend_order: -2
+                interactive: true
+                color: none
+                collide: false
+                style: pink-style
+                size: [
+                        [8,  '24px'],
+                        [13, '48px'],
+                        [18, '72px']]
+    teal-dots:
+        data: {source: hcity}
+        filter:
+            all:
+            - $geometry: point
+            - { $zoom: { min: 1, max: 8 } }
+        draw:
+            points:
+                blend_order: -2
+                interactive: true
+                color: [0.094, 0.773, 0.910, 1.00]
+                collide: false
+                size: [
+                        [3,  '2px'],
+                        [8,  '12px']]
+    teal-ghosts:
+        data: {source: hcity}
+        filter:
+            all:
+            - $geometry: point
+            - { $zoom: { min: 8, max: 19 } }
+        draw:
+            points:
+                blend_order: -2
+                interactive: true
+                color: none
+                collide: false
+                style: teal-style
+                size: [
+                        [8,  '24px'],
+                        [13, '48px'],
+                        [18, '72px']]
+    urban_area:
+        data: { source: here , layer: landuse}
+        filter:
+            all:
+            - $geometry: polygon
+            - kind: urban_area
+        draw:
+            polygons:
+                color: [0.169, 0.153, 0.243, 1.00]
+                order: global.sort_rank
+    aerodrome:
+        data: { source: here , layer: landuse}
+        filter:
+            all:
+            - $geometry: polygon
+            - kind: aerodrome
+        draw:
+            polygons:
+                color: '#375A80'
+                order: global.sort_rank
+    runway:
+        data: { source: here , layer: landuse}
+        filter:
+            all:
+            - $geometry: polygon
+            - kind: runway
+        draw:
+            polygons:
+                color: '#46919E'
+                order: global.sort_rank
+    residential:
+        data: {source: here, layer: roads}
+        filter: function() { return (feature.kind == 'minor_road' && ( feature.kind_detail== 'unclassified') || (feature.kind_detail == 'residential') || (feature.kind_detail == 'service' ))}
+
+        draw:
+            road_line:
+                style: lines
+                color: '#46919E'
+                order: function() { return feature.sort_rank + 0.5; }
+                width: [
+                        [8, 0.01px],
+                        [14, 0.5px],
+                        [17, 2px]
+                        ]
+        label:
+            filter:
+                - $zoom: { min: 16 }
+            draw:
+                text:
+                    font:
+                        text_source: global.language_text_source
+                        family: Gruesa
+                        size: 12
+                        priority: 15
+                        fill: '#FFF'
+                        stroke: {color: '#000', width: 1
+                        }
+    secondary:
+        data: {source: here, layer: roads}
+        filter: function() {return (feature.kind == 'major_road' && feature.kind_detail.startsWith('secondary'))}
+        draw:
+            road_line:
+                style: lines
+                color: '#46919E'
+                order: function() { return feature.sort_rank + 0.5; }
+                width: [
+                        [8, 0.11px],
+                        [14, 1px],
+                        [17, 3px]
+                        ]
+        label:
+            filter:
+                - $zoom: { min: 14 }
+            draw:
+                text:
+                    font:
+                        text_source: global.language_text_source
+                        family: Gruesa
+                        size: 12
+                        priority: 15
+                        fill: '#FFF'
+                        stroke: {color: '#000', width: 1
+                        }
+
+    tertiary:
+        data: {source: here, layer: roads}
+        filter: function() {return (feature.kind == 'major_road' && (feature.kind_detail.startsWith('tertiary')))}
+        draw:
+            road_line:
+                style: lines
+                color: '#46919E'
+                order: function() { return feature.sort_rank + 5; }
+                width: [
+                        [8, 0.15px],
+                        [14, 1.3px],
+                        [17, 4px]
+                        ]
+        label:
+            filter:
+                - $zoom: { min: 10 }
+            draw:
+                text:
+                    font:
+                        text_source: global.language_text_source
+                        family: Gruesa
+                        size: 12
+                        priority: 15
+                        fill: '#FFF'
+                        stroke: {color: '#000', width: 1
+                        }
+
+    trunk:
+        data: {source: here, layer: roads}
+        filter: function() { return (feature.kind == 'highway' && (feature.kind_detail.startsWith('trunk')))}
+        draw:
+            road_line:
+                style: lines
+                color: '#46919E'
+                order: function() { return feature.sort_rank + 5; }
+                width: [
+                        [8, 0.15px],
+                        [14, 1.3px],
+                        [17, 4px]
+                        ]
+    primary:
+        data: {source: here, layer: roads}
+        filter: function() { return (feature.kind == 'major_road' && ( feature.kind_detail.startsWith('primary')))}
+        draw:
+            road_line:
+                style: lines
+                color: '#46919E'
+                order: function() { return feature.sort_rank + 5; }
+                width: [
+                        [8, 0.4px],
+                        [14, 2px],
+                        [17, 6px]
+                        ]
+        label_low:
+            filter:
+                all:
+                - $zoom: {min: 13}
+            draw:
+                text:
+                    repeat_distance: 100px
+                    font:
+                        text_source: global.language_text_source
+                        family: Gruesa
+                        size: 12
+                        priority: 25
+                        fill: '#FFF'
+                        stroke: {color: '#000', width: 1
+                        }
+        label_high:
+            filter:
+                 - $zoom: { min: 13 }
+            draw:
+                text:
+                    repeat_distance: 100px
+                    font:
+                        text_source: global.language_text_source
+                        family: Gruesa
+                        size: 12
+                        priority: 25
+                        fill: '#FFF'
+                        stroke: {color: '#000', width: 1
+                        }
+    highway:
+        data: {source: here, layer: roads}
+        filter: function() { return (feature.kind == 'highway' && (feature.kind_detail.startsWith('motorway')))}
+        draw:
+            road_line:
+                style: lines
+                color: '#46919E'
+                order: function() { return feature.sort_rank + 5; }
+                width: [
+                        [8, 0.4px],
+                        [14, 2px],
+                        [17, 6px]
+                        ]
+        link:
+            filter: { is_link: true }
+            draw:
+                link_line:
+                    style: lines
+                    color: '#46919E'
+                    order: function() { return feature.sort_rank + 5; }
+                    width: [
+                        [8, 1px],
+                        [14, 4px],
+                        [17, 8px]
+                        ]
+        label:
+            filter:
+                all:
+                - $zoom: {min: 10}
+            draw:
+                text:
+                    #repeat_distance: 100px
+                    font:
+                        text_source: global.language_text_source
+                        family: Gruesa
+                        size: 12
+                        priority: 15
+                        fill: '#FFF'
+                        stroke: {color: '#000', width: 1
+                        }
+    country_border:
+        data: { source: here, layer: boundaries }
+        filter:
+            all:
+            - $geometry: line
+            - kind: country
+        draw:
+            boundary_case:
+                style: lines
+                color: [0.322, 0.404, 0.431, 1.00]
+                order: global.sort_rank
+                width: [
+                        [1, 20000],
+                        [2, 16000],
+                        [3, 14000],
+                        [4, 10000],
+                        [5, 6000],
+                        [6, 4000],
+                        [7, 2000],
+                        [8, 1000],
+                        [9, 500],
+                        [10, 240],
+                        [11, 160],
+                        [12, 80],
+                        [13, 40],
+                        [14, 20]
+                        ]
+            boundary_fill:
+                style: lines
+                color: '#2F444B'
+                order: function() { return feature.sort_rank + 5; }
+                width: [
+                        [2, 4000],
+                        [3, 2800],
+                        [4, 2000],
+                        [5, 1000],
+                        [6, 440],
+                        [7, 180],
+                        [8, 100],
+                        [9, 60],
+                        [10, 40],
+                        [11, 30],
+                        [12, 20],
+                        [13, 10],
+                        [14, 4]
+                        ]
+        label:
+            draw:
+                text:
+                    font:
+                        text_source: global.language_text_source
+                        family: FiraGo
+                        size: 12.8
+                        priority: 1
+                        fill: '#000'
+                        stroke: {color: [1.000, 1.000, 1.000, 0.50,], width: 2
+                        }
+    region_border:
+        data: { source: here, layer: boundaries }
+        filter:
+            all:
+            - $geometry: line
+            - kind: region
+        draw:
+            border_line:
+                style: lines'
+                color: '#7C7C7C'
+                order: function() { return feature.sort_rank + 5; }
+                width: [
+                        [2, 1200],
+                        [3, 600],
+                        [4, 300],
+                        [5, 200],
+                        [6, 120],
+                        [7, 60],
+                        [8, 40],
+                        [9, 24],
+                        [10, 16],
+                        [11, 10],
+                        [12, 6],
+                        [13, 4],
+                        [14, 2]
+                    ]
+    other_border:
+        data: { source: here, layer: boundaries }
+        filter:
+            all:
+            #- $geometry: line
+            - kind: region
+        draw:
+            border_line:
+                style: lines
+                color: '#38315F'
+                order: function() { return feature.sort_rank + 5; }
+                width: [
+                        [8, 1px],
+                        [14, 4px],
+                        [17, 8px]
+                        ]
+    country:
+        data: { source: here , layer: places }
+        filter:
+            all:
+            - function() {return feature.min_zoom <= ($zoom)}
+            - kind: country
+        draw:
+            text:
+                text_source: global.language_text_source
+                text_wrap: 30
+                priority: 10
+                font:
+                    family: Creepster
+                    size: [
+                        [1, 18],
+                        [4, 24],
+                        [8, 36]
+                        ]
+                    fill: '#97DBB6'
+                    stroke: {
+                        color: '#38315F',
+                        width: 8px
+                        }
+                    transform: uppercase
+                    weight: 400
+
+    locality_10million_capital:
+        data: { source: here , layer: places}
+        filter: function() { return ((((feature.kind == 'locality' )&& feature.population) && (feature.population > 10000000 || feature.country_capital))&& feature.country_capital)}
+        draw:
+            text:
+                text_source: global.language_text_source
+                text_wrap: 30
+                priority: 39
+                font:
+                    family: Creepster
+                    weight: bold
+                    size: [
+                        [1, 9.6],
+                        [2, 11.2],
+                        [3, 12.8],
+                        [4, 14.4],
+                        [5, 16],
+                        [6, 19.2],
+                        [7, 22.4],
+                        [8, 25.6],
+                        [9, 28.8],
+                        [10, 32]
+                        ]
+                    fill: '#97DBB6'
+                    stroke: {
+                        color: '#38315F',
+                        width: 8px
+                        }
+    locality_10million:
+        data: { source: here , layer: places}
+        filter: function() { return ((feature.kind == 'locality' && feature.population) && (feature.population > 10000000 || feature.country_capital))}
+        draw:
+            text:
+                text_source: global.language_text_source
+                text_wrap: 30
+                priority: 39
+                font:
+                    size: [
+                        [1, 9.6],
+                        [2, 11.2],
+                        [3, 12.8],
+                        [4, 14.4],
+                        [5, 16],
+                        [6, 19.2],
+                        [7, 22.4],
+                        [8, 25.6],
+                        [9, 28.8],
+                        [10, 32]
+                        ]
+                    fill: '#97DBB6'
+                    family: Creepster
+                    stroke: {
+                        color: '#38315F',
+                        width: 8px
+                        }
+
+    locality_label_1million:
+        data: { source: here , layer: places}
+        filter: function() { return (feature.kind = 'locality' && feature.population && (feature.region_capital || feature.population > 1000000))}
+        draw:
+            text:
+                text_source: global.language_text_source
+                text_wrap: 30
+                priority: 40
+                font:
+                    size: [
+                        [2, 9.6],
+                        [3, 11.2],
+                        [4, 12.8],
+                        [5, 14.4],
+                        [6, 16],
+                        [7, 19.2],
+                        [8, 22.4],
+                        [9, 25.6],
+                        [10, 28.8],
+                        [11, 32]
+                        ]
+                    fill: '#97DBB6'
+                    family: Creepster
+                    weight: 100
+                    stroke: {
+                        color: '#38315F',
+                        width: 2px
+                        }
+
+
+    locality_label_400k:
+        data: { source: here , layer: places}
+        filter: function() { return (feature.kind = 'locality' && feature.population && feature.population > 400000)}
+        draw:
+            text:
+                text_source: global.language_text_source
+                text_wrap: 30
+                priority: 41
+                font:
+                    size: [
+                        [4, 11.2],
+                        [5, 12.8],
+                        [6, 16],
+                        [7, 19.2],
+                        [8, 22.4],
+                        [9, 24],
+                        [10, 25.6],
+                        [11, 27.2]
+                        ]
+                    fill: '#97DBB6'
+                    family: Creepster
+                    stroke: {
+                        color: '#38315F',
+                        width: 2px
+                        }
+
+    locality_label_100k:
+        data: { source: here , layer: places}
+        filter:
+            all:
+                - function() { return (feature.kind = 'locality' && feature.population > 100000)}
+                - $zoom: {min: 5}
+        draw:
+            text:
+                text_source: global.language_text_source
+                text_wrap: 30
+                priority: 42
+                font:
+                    family: Gruesa
+                    weight: 400
+                    size: [
+                        [4, 9.6],
+                        [5, 11.2],
+                        [6, 12.8],
+                        [7, 16],
+                        [8, 19.2],
+                        [9, 20.8],
+                        [10, 22.4],
+                        [11, 24],
+                        [12, 25.6]
+                        ]
+                    fill: '#97DBB6'
+                    stroke: {
+                        color: '#38315F',
+                        width: 4px
+                        }
+
+    locality_label_50k:
+        data: { source: here , layer: places}
+        filter:
+            all:
+                - function() { return (feature.kind = 'locality' && feature.population > 50000)}
+                - $zoom: {min: 5}
+        draw:
+            text:
+                text_source: global.language_text_source
+                text_wrap: 30
+                priority: 43
+                font:
+                    family: Gruesa
+                    size: [
+                        [10, 16],
+                        [11, 19.2],
+                        [12, 22.4],
+                        [13, 24]
+                        ]
+                    fill: '#97DBB6'
+                    stroke: {
+                        color: '#38315F',
+                        width: 4px
+                        }
+
+    locality_label_10k:
+        data: { source: here , layer: places}
+        filter:
+            all:
+                - function() { return (feature.kind = 'locality' && feature.population > 10000)}
+                - $zoom: {min: 10}
+        draw:
+            text:
+                text_source: global.language_text_source
+                text_wrap: 30
+                priority: 44
+                font:
+                    family: Gruesa
+                    size: [
+                        [11, 16],
+                        [12, 17.6],
+                        [13, 19.2],
+                        [14, 20.8],
+                        [15, 22.4]
+                        ]
+                    fill: '#97DBB6'
+                    stroke: {
+                        color: '#38315F',
+                        width: 2px
+                        }
+
+    locality_label:
+        data: { source: here , layer: places}
+        filter:
+            all:
+                - function() { return (feature.kind = 'locality' && feature.population <= 10000)}
+                - $zoom: {min: 12}
+        draw:
+            text:
+                text_source: global.language_text_source
+                priority: 50
+                font:
+                    size: [
+                        [11, 12.8],
+                        [12, 14.4],
+                        [13, 16],
+                        [14, 17.6],
+                        [15, 19.2]
+                        ]
+                    fill: '#97DBB6'
+                    family: Gruesa
+                    stroke: {
+                        color: '#38315F',
+                        width: 2px
+                        }
+
+
+    building_outline:
+        data: { source: here, layer: buildings }
+        filter:
+            all:
+            - $zoom: {min: 14}
+        draw:
+            lines:
+                color: [1.000, 1.000, 1.000, 1.00]
+                order: global.sort_rank
+                width: 1
+
+    building_extrusion:
+        data: { source: here , layer: buildings}
+        filter:
+            all:
+            - $geometry: polygon
+            - $zoom: {min: 15}
+        draw:
+            _transparent:
+                color: [0.216, 0.353, 0.502, 0.70]
+                order: global.sort_rank
+                extrude: function() { return feature.height; }

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>this is halloween</title>
+  <link href="https://fonts.googleapis.com/css?family=Creepster&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Averia+Gruesa+Libre&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.67.0/dist/L.Control.Locate.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+
+    #info {
+      text-shadow: -2px 0 2px #97DBB6, 2px 0 2px #46919E;
+    }
+
+    #sidebar {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      bottom: 20px;
+      width: 250px;
+      overflow: auto;
+      background: rgba(255, 255, 255, 0.8);
+      color: #38315F;
+      font-family: 'Averia Gruesa Libre', cursive;
+      font-size: 14px;
+      align-items: center;
+      text-align: center;
+      padding-left: 12px;
+      padding-right: 12px;
+      outline: 2px solid #38315F;
+      outline-offset: -5px;
+      margin: 0;
+      z-index: 999;
+    }
+
+    a {
+      color: #252138
+    }
+
+    h1 {
+      font-family: 'Creepster', cursive;
+      font-size: 48px;
+      text-shadow: -3px 0 1px #97DBB6, 3px 0 1px #46919E;
+      color: #252138;
+      line-height: 90%;
+      margin: 0;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id='map'></div>
+  <div id='sidebar'>
+    <h1>This is Halloween</h1>
+    </br>
+    It's that special time of year, and the right costume is key to celebrating the season in style. We assembled
+    a seance and the spirits presented us with locations for the 2 major pop-up costume retailers,
+    <font color="B0719E"><b>Spirt Halloween</b></font> and <font color="127E94">Halloween City</font>.
+    </br>
+    </br>
+    <font size='2'>
+      Store locations from <a href="https://www.alltheplaces.xyz" target="_blank">All The Places</a>
+      </br>using<a href="https://developer.here.com/products/xyz?cid=Freemium-DeveloperPortal-PJ-0-XYZ-DevPortal-&utm_source=DeveloperPortal&utm_medium=referral&utm_campaign=2019_Halloween_Discovery_Map" target="_blank"> HERE XYZ Hub</a>
+    </br> Geocode Provider: <a href="https://developer.here.com/documentation/geocoder/topics/what-is.html?cid=Freemium-DeveloperPortal-PJ-0-XYZ-DevPortal-&utm_source=DeveloperPortal&utm_medium=referral&utm_campaign=2019_Halloween_Discovery_Map" target="_blank"> HERE Geocoder API</a>
+    </font>
+
+    </br>
+    </br>
+    </br>
+    <div id="info">
+      <font size='3'>select a ghost
+        </br>let the points respond
+        </br>look for a message
+        </br> from regions beyond</font>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+  <script src="https://unpkg.com/tangram/dist/tangram.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.67.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+  <script>
+    var map = L.map('map', {
+      zoomControl: false
+    });
+    var layer = Tangram.leafletLayer({
+      scene: 'ghosthost.yaml',
+      //always add attribution, its !important
+      attribution: '<a href="https://mapzen.com/tangram" target="_blank">Tangram</a> | © <a href="https://legal.here.com/terms" target="_blank">2019 HERE</a> ',
+      events: {
+        click: function(selection) {
+          if (selection.feature) {
+            document.getElementById('info').innerHTML =
+              "<font size='3'>" +
+              "<img src=" + selection.feature.properties.logo + ">" + "</br>" +
+              selection.feature.properties.addr_full + "</br>" +
+              selection.feature.properties.addr_city + "," +
+              selection.feature.properties.addr_state + "</br>" +
+              "<a href=" + selection.feature.properties.website + ">" + "Store Link</a>" +
+              "</font>"
+          } else {
+            document.getElementById('info').innerHTML =
+              "<font size='3'>" +
+              "select a ghost" + "</br>" +
+              "let the points respond" + "</br>" +
+              "look for a message" + "</br>" +
+              "from regions beyond" +
+              "</font>"
+          }
+
+        }
+      }
+    });
+    layer.addTo(map);
+    map.setView([39, -103], 4.3);
+    L.control.locate({
+      position: 'topright',
+      drawMarker: false,
+      drawCircle: false
+    }).addTo(map);
+    L.control.locate({
+      locateOptions: {
+        maxZoom: 10
+      }
+    });
+
+    var onGeocodeResult = function(e) {
+      map.setView(e.geocode.center, 10);
+    }
+
+    geocoder = L.Control.Geocoder.here({
+        app_id: 'cV1JVtCdMWM60dkKY4Fb',
+        app_code: 'r6UXM6RYoc85LT7kA3aMlA'
+      }),
+      L.Control.geocoder({
+        geocoder: geocoder,
+        defaultMarkGeocode: false,
+        errorMessage: "You moved the bodies but not the headstones",
+        placeholder: "Search the underworld",
+        collapsed: true
+      })
+      .on('markgeocode', onGeocodeResult)
+      .addTo(map);
+
+  </script>
+</body>
+
+</html>
