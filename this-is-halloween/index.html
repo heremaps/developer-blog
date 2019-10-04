@@ -76,13 +76,14 @@
     </br>
     It's that special time of year, and the right costume is key to celebrating the season in style. We assembled
     a seance and the spirits presented us with locations for the 2 major pop-up costume retailers,
-    <font color="B0719E"><b>Spirt Halloween</b></font> and <font color="127E94">Halloween City</font>.
+    <font color="B0719E"><b>Spirt Halloween</b></font> and <font color="127E94"><b>Halloween City</b></font>.
     </br>
     </br>
     <font size='2'>
       Store locations from <a href="https://www.alltheplaces.xyz" target="_blank">All The Places</a>
       </br>using<a href="https://developer.here.com/products/xyz?cid=Freemium-DeveloperPortal-PJ-0-XYZ-DevPortal-&utm_source=DeveloperPortal&utm_medium=referral&utm_campaign=2019_Halloween_Discovery_Map" target="_blank"> HERE XYZ Hub</a>
-    </br> Geocode Provider: <a href="https://developer.here.com/documentation/geocoder/topics/what-is.html?cid=Freemium-DeveloperPortal-PJ-0-XYZ-DevPortal-&utm_source=DeveloperPortal&utm_medium=referral&utm_campaign=2019_Halloween_Discovery_Map" target="_blank"> HERE Geocoder API</a>
+      </br> Geocode Provider: <a href="https://developer.here.com/documentation/geocoder/topics/what-is.html?cid=Freemium-DeveloperPortal-PJ-0-XYZ-DevPortal-&utm_source=DeveloperPortal&utm_medium=referral&utm_campaign=2019_Halloween_Discovery_Map"
+        target="_blank"> HERE Geocoder API</a>
     </font>
 
     </br>
@@ -117,7 +118,7 @@
               selection.feature.properties.addr_full + "</br>" +
               selection.feature.properties.addr_city + "," +
               selection.feature.properties.addr_state + "</br>" +
-              "<a href=" + selection.feature.properties.website + ">" + "Store Link</a>" +
+              "<a href=" + selection.feature.properties.website + ' " target="_blank" ' + ">" + "Store Link</a>" +
               "</font>"
           } else {
             document.getElementById('info').innerHTML =
@@ -162,7 +163,6 @@
       })
       .on('markgeocode', onGeocodeResult)
       .addTo(map);
-
   </script>
 </body>
 
