@@ -451,7 +451,7 @@ layers:
             - kind: region
         draw:
             border_line:
-                style: lines'
+                style: lines
                 color: '#7C7C7C'
                 order: function() { return feature.sort_rank + 5; }
                 width: [
