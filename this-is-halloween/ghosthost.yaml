@@ -729,8 +729,6 @@ layers:
                         color: '#38315F',
                         width: 2px
                         }
-
-
     building_outline:
         data: { source: here, layer: buildings }
         filter:
